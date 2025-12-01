@@ -1,14 +1,9 @@
-name: Auto-Destroy
 on:
   schedule:
     - cron: "0 20 * * *"
   pull_request:
     types: [closed]
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Release/apply"]
-    types:
-      - completed
 
 permissions: read-all
 
@@ -17,11 +12,10 @@ jobs:
     if: >
       github.event_name == 'schedule' ||
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' && 
-       github.event.pull_request.merged == true && 
-       contains(github.event.pull_request.title, '[CLEANUP]')) &&
-      (github.event_name == 'workflow_run' && 
-       github.event.workflow_run.conclusion == 'success')
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.merged == true &&
+       github.event.pull_request.base.ref == 'master' &&
+       contains(github.event.pull_request.title, '[CLEANUP]'))
     runs-on: ubuntu-latest
     permissions:
       contents: write
