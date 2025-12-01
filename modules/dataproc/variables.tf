@@ -30,3 +30,4 @@ variable "preemptible_workers" {
   default     = 2
   description = "Number of preemptible/spot worker nodes in Dataproc cluster"
 }
+
