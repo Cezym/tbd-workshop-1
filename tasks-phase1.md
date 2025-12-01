@@ -62,7 +62,34 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 10. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
+   <!-- #```bash -->
+   <!-- #echo "To be or not to be that is the question" > #shakespeare.txt -->
+   <!-- ``` -->
+   ```bash
+   gsutil cp shakespeare.txt gs://tbd-2025z-307640-data/
+   ```
+   ```bash
+    gsutil ls gs://tbd-2025z-307640-data/shakespeare.txt                                
+   ```
+   - stworzenie-datasetu
+
+   ![1-stworzenie-datasetu.png](doc/figures/1-stworzenie-datasetu.png)
    
+   - stworzenie tabeli 
+
+   ![2-stworzenie-tabeli.png](doc/figures/2-stworzenie-tabeli.png)
+
+   - widok tabeli w datasecie
+
+   ![3-widok-tabeli-w-datasecie.png](doc/figures/3-widok-tabeli-w-datasecie.png)
+
+   - query z tabeli 
+
+   ![4-query-z-tabeli.png](doc/figures/4-query-z-tabeli.png)
+
+   
+
 
     ***why does ORC not require a table schema?***
 
@@ -71,15 +98,22 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
-    The path to the bucket in spark-job.py was incorrect
+
+    Ścieżka do pliku bucket w spark-job.py była nieprawidłowa.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
+    ***place the link to the modified file and inserted terraform code***
+
+    [variables.tf](modules/dataproc/variables.tf)
+
+    ![varablestf.png](doc/figures/varablestf.png)
+
     [main.tf](modules/dataproc/main.tf)
 
-    ![main_tf.png](modules/dataproc/main_tf.png)
+    ![main_tf.png](doc/figures/main_tf.png)
 
-    ***place the link to the modified file and inserted terraform code***
+    
     
 13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
@@ -98,6 +132,10 @@ Steps:
      
 ***paste workflow YAML here***
 
+[auto-destroy.yml](github/workflows/auto-destroy.yml)
+
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
 ***write one sentence why scheduling cleanup helps in this workshop***
+
+Harmonogram automatycznego zwalniania zasobów zapobiega niepotrzebnym kosztom i utrzymuje porządek w projekcie.
