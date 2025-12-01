@@ -50,7 +50,7 @@ http://localhost:8088
     1. Description of the components of service accounts
     2. List of buckets for disposal
     
-    ***place your diagram here***
+   ![diagram_phase1.png](doc/figures/diagram_phase1.png)
 
 9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
