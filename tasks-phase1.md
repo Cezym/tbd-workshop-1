@@ -24,10 +24,27 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+
+    Moduł VPC to gotowy zestaw konfiguracji, który automatycznie tworzy całą sieć VPC w chmurze (w naszym przypadku w GCP) wraz z jej komponentami podsieciami, regułami firewall'a oraz innymi opcjonalnymi elementami jak np. routery i NAT. W module znajdują się dwa kluczowe zasoby:  
+    - google_compute_firewall.default-internal-allow-all - reguła firewall, która pozwala na pełną komunikację wewnątrz VPC (host ↔ host)
+    - google_compute_firewall.fw-allow-ingress-from-iap - reguła firewall pozwalająca na dostęp do zasobów poprzez Identity-Aware Proxy (IAP)
+
+    ![graph.png](doc/figures/graph.png)
+
    
 7. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
+    ustawienie tunelu 
+    ```gcloud compute ssh --project tbd-2025z-307640 --zone europe-west1-b tbd-dataproc-m -- -N -L 8088:localhost:8088```
+ 
+    po ustawieniu tunelu, YARN UI jest widoczny w przeglądarce pod adresem:
+http://localhost:8088
+
+   ![YARN_UI.png](doc/figures/YARN_UI.png)
+
+   
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
@@ -46,13 +63,21 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     
     ***place the code and output here***
    
+
     ***why does ORC not require a table schema?***
+
+    Pliki ORC przechowują zarówno dane, jak i ich schemat (są "self-describing"). Dlatego w BigQuery nie trzeba definiować schematu przy tworzeniu tabeli zewnętrznej na plikach ORC.
 
 11. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+    The path to the bucket in spark-job.py was incorrect
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
+
+    ![main.tf](modules/dataproc/main.tf)
+
+    ![maintf.jpeg](modules/dataproc/maintf.jpeg)
 
     ***place the link to the modified file and inserted terraform code***
     
