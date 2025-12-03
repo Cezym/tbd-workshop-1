@@ -119,6 +119,6 @@ Steps:
 
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
-![auto-destroy.png](/doc/figures/auto-destroy.png)
+![auto-destroy.png](doc/figures/auto-destroy.png)
 
 Harmonogram automatycznego zwalniania zasobów zapobiega niepotrzebnym kosztom i utrzymuje porządek w projekcie.
